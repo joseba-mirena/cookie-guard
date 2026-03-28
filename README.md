@@ -13,6 +13,7 @@
 ![Version](https://img.shields.io/badge/version-3.0.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Size](https://img.shields.io/badge/size-12.8%20kB-lightgrey)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-View-ff2c6e)](https://www.josebamirena.com/freebies-tools-resources/cookie-guard-javascript)
 
 A GDPR/CCPA 2026 compliance, simple and customizable Cookies Management system.
 
@@ -44,7 +45,7 @@ Add the minified version before the closing `</body>` tag:
 
 ```html
 <script 
-    src="/media/assets/cookie-guard/3.0.0/dist/cookie-guard.min.js" 
+    src="https://opensource.josebamirena.com/cookie-guard/3.0.0/dist/cookie-guard.min.js" 
     integrity="sha384-4TomZ6aXKNjC0fGi+v+GQTBp9kmS006nQ3SriGo6U0a93lhADVwmw8toL8JQW4vB" 
     crossorigin="anonymous">
 </script>
@@ -193,3 +194,11 @@ To let Cookie Guard manage your scripts, add the type attribute text/plain and a
 > * ✅ Security improvements.
 > * ✅ Proprietary to MIT license.
 > * ⚠️ Version 2.0.0 deprecated.
+
+
+## 🎯 Live Demo
+
+Try Cookie Guard live on my website:  
+👉 [Cookie Guard Demo](https://www.josebamirena.com/freebies-tools-resources/cookie-guard-javascript)
+
+See how it handles consent, 22 languages, and third-party script blocking in action.
