@@ -2,11 +2,11 @@
  * Cookie Guard - GDPR/CCPA Compliance Consent Management System.
  *
  * @package    Cookie Guard JS
- * @version    v3.0.0
+ * @version    v3.2.0
  * @copyright  2026 JosebaMirena.com
  * @license    MIT
- *             https://www.josebamirena.com/media/assets/cookie-guard/3.0.0/LICENSE
- * @author     Florin
+ *             https://www.josebamirena.com/media/assets/cookie-guard/3.2.0/LICENSE
+ * @author     Joseba Mirena
  * 
  * MAIN FEATURES:
  * - Legal Compliance: Fully GDPR/CCPA compliant workflow.
@@ -25,7 +25,7 @@
  * - Developer API: Public 'toggle', 'open', and 'reset' methods for external control.
  * 
  * DOCUMENTATION:
- * https://www.josebamirena.com/media/assets/cookie-guard/3.0.0/README
+ * https://www.josebamirena.com/media/assets/cookie-guard/3.2.0/README
  */
 
 const CookieGuard = (function() {
@@ -275,14 +275,14 @@ const CookieGuard = (function() {
         // Build the legal mandatory checkbox if url is provided
         const l = CONF.url ? `
             <div class="cg-ck">
-                <input type="checkbox" checked disabled class="cg-man">
+                <input type="checkbox" checked disabled class="cg-man" aria-label="${LOC.t.legalAcceptancePrefix} ${LOC.t.legalTermsText}">
                 <span>${t.legalAcceptancePrefix}<a href="${CONF.url}" class="cg-l">${t.legalTermsText}</a></span>
             </div>` : '';
 
         // Conditional Footer Legal Link & Separator
         const f = `
             <div class="cg-ft">
-                <a class="cg-l" onclick="CookieGuard.policy()">${t.policyLinkText}</a>
+                <a class="cg-l" href="/" onclick="CookieGuard.policy(); return false;">${t.policyLinkText}</a>
                 ${CONF.url ? `
                     <span class="cg-sep">${CONF.separator}</span>
                     <a class="cg-l" href="${CONF.url}">${t.legalTermsText}</a>

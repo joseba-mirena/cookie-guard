@@ -4,16 +4,15 @@
 *GDPR/CCPA compliance Cookies Consent Management.*
 
 
-* **Package:** Cookie Guard JS\
-* **Version:** v3.0.0\
-* **Copyright:** 2026 [`JosebaMirena.com`](https://www.josebamirena.com)\
-* **License:** [`MIT License`](./LICENSE)\
+* **Package:** Cookie Guard JS
+* **Version:** v3.2.0
+* **Copyright:** 2026 [`JosebaMirena.com`](https://www.josebamirena.com)
+* **License:** [`MIT License`](./LICENSE)
 * **Author:** Joseba Mirena ([@joseba-mirena](https://github.com/joseba-mirena))
 
-![Version](https://img.shields.io/badge/version-3.0.0-blue)
+![Version](https://img.shields.io/badge/version-3.2.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Size](https://img.shields.io/badge/size-12.8%20kB-lightgrey)
-[![Live Demo](https://img.shields.io/badge/Live_Demo-View-ff2c6e)](https://www.josebamirena.com/freebies-tools-resources/cookie-guard-javascript)
 
 A GDPR/CCPA 2026 compliance, simple and customizable Cookies Management system.
 
@@ -45,8 +44,8 @@ Add the minified version before the closing `</body>` tag:
 
 ```html
 <script 
-    src="https://opensource.josebamirena.com/cookie-guard/3.0.0/dist/cookie-guard.min.js" 
-    integrity="sha384-4TomZ6aXKNjC0fGi+v+GQTBp9kmS006nQ3SriGo6U0a93lhADVwmw8toL8JQW4vB" 
+    src="https://opensource.josebamirena.com/cookie-guard/3.2.0/dist/cookie-guard.min.js" 
+    integrity="sha384-b6NJQ/jCqiXdVn9khtESAQ6qIL/iPciTQ6J2m8PPLOUnKsEuG2lvDWmagy0DTqxp" 
     crossorigin="anonymous">
 </script>
 ```
@@ -182,18 +181,31 @@ To let Cookie Guard manage your scripts, add the type attribute text/plain and a
 ```
 
 
-## 📝 Changelog from 2.0.0
+## 📝 Changelog from 3.0.0
 
-> * ✅ 2026 GDPR/CCPA compliance workflow.
-> * ✅ Added support for sites not using 3rd party cookies.
-> * ✅ i18n 22 languages, LTR & RTL, with dynamic JSON loading.
-> * ✅ Optimization: Minified size reduced from 38.8 kB to 12.8 kB.
-> * ✅ Added reset Cookies public method and Shortcut (CTRL+SHIFT+X).
-> * ✅ UX: Improved modal animations and RTL support.
-> * ✅ Performance improvements.
-> * ✅ Security improvements.
-> * ✅ Proprietary to MIT license.
-> * ⚠️ Version 2.0.0 deprecated.
+### v3.2.0 - Accessibility Release
+
+#### Added
+- Added `aria-label` to legal acceptance checkbox for better screen reader support
+
+#### Fixed
+- Fixed missing `aria-labelledby` attribute in minified version (modal dialog now properly labeled)
+- Fixed "uncrawlable link" for policy link
+
+---
+
+### Previous Changes (v3.0.0)
+
+- ✅ 2026 GDPR/CCPA compliance workflow.
+- ✅ Added support for sites not using 3rd party cookies.
+- ✅ i18n 22 languages, LTR & RTL, with dynamic JSON loading.
+- ✅ Optimization: Minified size reduced from 38.8 kB to 12.8 kB.
+- ✅ Added reset Cookies public method and Shortcut (CTRL+SHIFT+X).
+- ✅ UX: Improved modal animations and RTL support.
+- ✅ Performance improvements.
+- ✅ Security improvements.
+- ✅ Proprietary to MIT license.
+- ⚠️ Version 2.0.0 deprecated.
 
 
 ## 🎯 Live Demo
