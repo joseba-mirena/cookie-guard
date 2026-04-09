@@ -2,10 +2,10 @@
  * Cookie Guard - GDPR/CCPA Compliance Consent Management System.
  *
  * @package    Cookie Guard JS
- * @version    v3.2.0
+ * @version    v3.4.0
  * @copyright  2026 JosebaMirena.com
  * @license    MIT
- *             https://www.josebamirena.com/media/assets/cookie-guard/3.2.0/LICENSE
+ *             https://www.josebamirena.com/media/assets/cookie-guard/3.4.0/LICENSE
  * @author     Joseba Mirena
  * 
  * MAIN FEATURES:
@@ -16,7 +16,7 @@
  * - Smart Execution: Auto-activates Analytics/Marketing scripts (handles type="text/plain").
  * - Zero Dependencies: Pure Vanilla JavaScript; no jQuery or external libraries required.
  * - Encapsulation: Built within an IIFE to ensure no global namespace pollution.
- * - Performance: Ultra-lightweight architecture (~12.8 kB minified).
+ * - Performance: Ultra-lightweight architecture (~13 kB minified).
  * - Accessibility: Implements ARIA standards for screen readers and keyboard navigation.
  * - Global Reach: Support for 22 languages (LTR & RTL) with automatic browser detection.
  *     Locales: en, es, ca, eu, gl, et, ar, pt, pl, vi, fr, de, it, ru, zh, ja, id, ko, tr, nl, hi, bn.
@@ -25,28 +25,32 @@
  * - Developer API: Public 'toggle', 'open', and 'reset' methods for external control.
  * 
  * DOCUMENTATION:
- * https://www.josebamirena.com/media/assets/cookie-guard/3.2.0/README
+ * https://www.josebamirena.com/media/assets/cookie-guard/3.4.0/README
  */
 
 const CookieGuard = (function() {
     // Unique identifier for the consent cookie
     const C_N = "cg_cookie";
+    // Unique identifier for locale wording cache
+    const C_W = "cg_word";
 
     let CONF = {}; let LOC = {};
+
+    const $=document;
 
     // Get the script's own URL to determine the base directory
     const gSB = () => {
         // script base
         let sb = '';
         // Locales files folder
-        const d = '/locales';
+        const f = '/locales';
         // Standard scripts
-        const cs = document.currentScript;
+        const cs = $.currentScript;
         if (cs) { 
             sb = cs.src; 
         } else {        
             // Search for any script that includes our filename
-            const scrs = document.getElementsByTagName('script');
+            const scrs = $.getElementsByTagName('script');
             for (let s of scrs) {
                 if (s.src.includes('cookie-guard')) {
                     sb = s.src;
@@ -55,8 +59,8 @@ const CookieGuard = (function() {
             }
         }
         return sb 
-            ? sb.substring(0, sb.lastIndexOf('/')) + d
-            : '.' + d;
+            ? sb.substring(0, sb.lastIndexOf('/')) + f
+            : '.' + f;
     };
 
     // List of available translations in ./locales directory
@@ -66,6 +70,16 @@ const CookieGuard = (function() {
      * Fetches localization from external JSON
      */
     async function load() {
+        // Check wording cache
+        const cached = localStorage.getItem(C_W);
+        if (cached) {
+            try {
+                const cacheData = JSON.parse(cached);
+                LOC = cacheData.locale;
+                return;
+            } catch (e) {}
+        }
+
         let lang = CONF.locale === 'auto' 
             ? navigator.language.split('-')[0] 
             : CONF.locale;
@@ -84,6 +98,11 @@ const CookieGuard = (function() {
                 r: data.dir === 'rtl', 
                 lc: lang 
             };
+            // Save wording to cache
+            localStorage.setItem(C_W, JSON.stringify({
+                lang: lang,
+                locale: LOC
+            }));
         } catch (error) {
             console.error(`[CookieGuard] Failed to load locale "${lang}".`, error);
         }
@@ -102,7 +121,7 @@ const CookieGuard = (function() {
      * Shortener
      */
     function gID(id) {
-        return document.getElementById(id);
+        return $.getElementById(id);
     }
 
     /**
@@ -120,15 +139,16 @@ const CookieGuard = (function() {
         
         /* Buttons */
         .cg-btn { 
+            font-size: 1.2rem;
             width: 100%; border: none; padding: 14px; border-radius: var(--cg-vr); 
             font-weight: 800; cursor: pointer; text-transform: uppercase; color: #fff; margin-bottom: 6px;
             transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, filter 0.3s ease, transform 0.1s ease; 
         }
         .cg-btn:active { transform: scale(0.98); }
-        .cg-b-pri { background: #12cf90; }
+        .cg-b-pri { background: #2ecc71; color: #000; }
         .cg-b-con { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); margin-top: 8px; color: rgba(255,255,255,0.8); }
         .cg-b-con:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.9); }
-        .cg-b-sec { background: #3b82f6; }
+        .cg-b-sec { background: #2eb6e8; color: #000; }
         .cg-b-pri:hover { filter: brightness(1.1); }
         .cg-b-sec:hover { filter: brightness(1.2); }
 
@@ -141,10 +161,10 @@ const CookieGuard = (function() {
      */
     function style(id, css) {
         if (gID(id)) return;
-        const s = document.createElement('style');
+        const s = $.createElement('style');
         s.id = id;
         s.innerHTML = css;
-        document.head.appendChild(s);
+        $.head.appendChild(s);
     }
 
     function cssI() {
@@ -262,8 +282,8 @@ const CookieGuard = (function() {
     function buildUI() {
         const { t, r } = LOC;
         if (gID('cg-ov')) return;
-        const saved = g_CD() || { analytics: true, marketing: true };
-        const o = document.createElement('div');
+        const saved = g_CD() || { analytics: false, marketing: false };
+        const o = $.createElement('div');
         o.id = 'cg-ov';
         o.dataset.dir = r ? 'rtl' : 'ltr';
 
@@ -327,16 +347,16 @@ const CookieGuard = (function() {
                 </div>
             </div>
         `;
-        document.body.appendChild(o);
+        $.body.appendChild(o);
         
         // Re-open floating button setup
         if(CONF.reopen) {
-            const btn = document.createElement('button');
+            const btn = $.createElement('button');
             btn.id = 'cg-ro';
             btn.dataset.dir = r ? 'rtl' : 'ltr';
             btn.innerHTML = `${SVG(16)} ${t.reopenBtn}`;
             btn.onclick = () => CookieGuard.open();
-            document.body.appendChild(btn);
+            $.body.appendChild(btn);
         }
     }
 
@@ -361,8 +381,8 @@ const CookieGuard = (function() {
                 reopen: true, // renders privacy button
                 radius: 12, // buttons radius in pixels
                 delay: 800, // modal delay in miliseconds
-                link: "#3b82f6", // links color
-                hover: "#10b981", // links hover color
+                link: "#10b981", // links color
+                hover: "#3b82f6", // links hover color
                 separator: "•", // modal footer separator
                 expiration: 365, // cookie expiration in days
                 path: gSB(), // locale JSON files path
@@ -398,6 +418,8 @@ const CookieGuard = (function() {
             document.cookie = `${C_N}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
             // Clear the localStorage entry
             localStorage.removeItem(C_N);
+            // Clear the localStorage wording
+            localStorage.removeItem(C_W);
             
             location.reload();
         },
@@ -415,7 +437,7 @@ const CookieGuard = (function() {
                     ${t.btnInfo}
                 </button>` : '';
 
-            const o = document.createElement('div');
+            const o = $.createElement('div');
             o.dataset.dir = r ? 'rtl' : 'ltr';
             o.id = 'cg-inf';
             o.innerHTML = `
@@ -430,7 +452,7 @@ const CookieGuard = (function() {
                     </button>
                 </div>
             `;
-            document.body.appendChild(o);
+            $.body.appendChild(o);
             
             // Smooth animation
             o.style.opacity = '0';
@@ -480,7 +502,7 @@ const CookieGuard = (function() {
             const el = gID('cg-ov');
             el.style.display = 'flex';
             this.show(); 
-            setTimeout(() => { el.classList.add('cg-visible'); document.body.style.overflow = 'hidden'; }, 10);
+            setTimeout(() => { el.classList.add('cg-visible'); $.body.style.overflow = 'hidden'; }, 10);
         },
         close: function() {
             /* Check if the site uses third-party cookies to determine which UI component to close */
@@ -493,7 +515,7 @@ const CookieGuard = (function() {
                     /* Wait for the opacity transition before hiding the display */
                     setTimeout(() => {
                         o.style.display = 'none';
-                        document.body.style.overflow = '';
+                        $.body.style.overflow = '';
                     }, 400);
                 }
             } else {
@@ -565,7 +587,7 @@ const CookieGuard = (function() {
                     n.type === 'text/plain' && 
                     n.getAttribute('data-cg-category') === cat) {
                     
-                    const newScript = document.createElement('script');
+                    const newScript = $.createElement('script');
                     newScript.async = false; // sequential execution
                     // Mirror attributes
                     Array.from(n.attributes).forEach(attr => {
@@ -584,7 +606,7 @@ const CookieGuard = (function() {
             };
 
             // 2. Run immediately for scripts already present
-            document.querySelectorAll('script[type="text/plain"]').forEach(p);
+            $.querySelectorAll('script[type="text/plain"]').forEach(p);
 
             // 3. Observe the DOM for scripts added later
             const observer = new MutationObserver((mutations) => {
@@ -599,7 +621,7 @@ const CookieGuard = (function() {
                 });
             });
 
-            observer.observe(document.documentElement, {
+            observer.observe($.documentElement, {
                 childList: true,
                 subtree: true
             });

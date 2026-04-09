@@ -5,16 +5,63 @@
 
 
 * **Package:** Cookie Guard JS
-* **Version:** v3.2.0
+* **Version:** v3.4.0
 * **Copyright:** 2026 [`JosebaMirena.com`](https://www.josebamirena.com)
 * **License:** [`MIT License`](./LICENSE)
 * **Author:** Joseba Mirena ([@joseba-mirena](https://github.com/joseba-mirena))
 
-![Version](https://img.shields.io/badge/version-3.2.0-blue)
+![Version](https://img.shields.io/badge/version-3.4.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Size](https://img.shields.io/badge/size-12.8%20kB-lightgrey)
+![Size](https://img.shields.io/badge/size-13%20kB-lightgrey)
 
 A GDPR/CCPA 2026 compliance, simple and customizable Cookies Management system.
+
+
+## 💡 The Truth About Cookie Consent
+
+**Cookie consent compliance is NOT as complicated as some companies want you to believe.**
+
+Many "compliance solutions" charge hundreds or thousands of euros per year, claiming you need:
+- ❌ Complex backend databases to store consent
+- ❌ IP tracking and user accounts
+- ❌ Expensive legal teams
+- ❌ Monthly subscription fees
+
+**They are lying and fear-mongering to scare you into paying.**
+
+
+### The Reality (Backed by GDPR/CCPA):
+
+| What you DON'T need | What you ACTUALLY need |
+|--------------------|----------------------|
+| Backend database | Cookie stored in user's browser ✅ |
+| IP address logging | Timestamp in the cookie ✅ |
+| User accounts | Consent/Reject buttons ✅ |
+| Monthly subscription | **Free tools like Cookie Guard** ✅ |
+| Legal team on retainer | Clear privacy policy + contact info ✅ |
+
+
+### Cookie Guard Does Everything Required:
+
+- ✅ Blocks third-party scripts until consent
+- ✅ Stores consent preferences (with timestamp)
+- ✅ Provides granular controls (Analytics/Marketing)
+- ✅ Offers easy opt-out (Reject All button)
+- ✅ Works across 22 languages
+- ✅ **Completely FREE and open source**
+
+
+### Don't Be Scared. Be Informed.
+
+Cookie consent compliance is about **respecting user privacy** - not about complex systems or expensive subscriptions.
+
+**See the compliance table below for exactly what GDPR/CCPA requires.** 
+
+---
+
+> ⚠️ **Warning**: While cookie consent is manageable, **non-compliance CAN result in fines** (up to €20 million or 4% of global revenue). However, a proper implementation like Cookie Guard + a simple privacy policy is **perfectly sufficient** to be compliant.
+
+**Don't let fear-mongering companies trick you. You've got this.** 💪
 
 ---
 
@@ -28,7 +75,7 @@ A GDPR/CCPA 2026 compliance, simple and customizable Cookies Management system.
 * **Legal Terms:** Optional acceptance and Legal URL smart handling.
 * **Global Reach:** Support for **22 languages** (LTR & RTL) with automatic browser detection.
     * *Locales:* `en, es, ca, eu, gl, et, ar, pt, pl, vi, fr, de, it, ru, zh, ja, id, ko, tr, nl, hi, bn`.
-* **Performance:** Ultra-lightweight architecture (~12.8 kB minified).
+* **Performance:** Ultra-lightweight architecture (~13 kB minified).
 * **Accessibility:** Implements ARIA standards for screen readers.
 * **Encapsulation:** Built within an IIFE to ensure no global namespace pollution.
 * **UI/UX:** Dynamic CSS/HTML injection with a fully responsive, mobile-first design.
@@ -44,8 +91,8 @@ Add the minified version before the closing `</body>` tag:
 
 ```html
 <script 
-    src="https://opensource.josebamirena.com/cookie-guard/3.2.0/dist/cookie-guard.min.js" 
-    integrity="sha384-b6NJQ/jCqiXdVn9khtESAQ6qIL/iPciTQ6J2m8PPLOUnKsEuG2lvDWmagy0DTqxp" 
+    src="https://opensource.josebamirena.com/cookie-guard/3.4.0/dist/cookie-guard.min.js" 
+    integrity="sha384-dRLgdAlVcDUp1BQffo1IH08fUouMfMdVCOZBZEEGD9uI+Nw6wWtNLLw+7p8U1bYD" 
     crossorigin="anonymous">
 </script>
 ```
@@ -103,7 +150,7 @@ Add the minified version before the closing `</body>` tag:
             locale: 'en', // fixed language
             url: "/legal", // legal relative url
             link: "#ff0000", // red links
-            radius: 8, // buttoms radius
+            radius: 8, // buttons radius
         })
     );
 </script>
@@ -181,9 +228,115 @@ To let Cookie Guard manage your scripts, add the type attribute text/plain and a
 ```
 
 
+## 📋 Legal Compliance
+
+Cookie Guard is fully compliant with both GDPR (EU) and CCPA/CPRA (California) requirements.
+
+| Requirement | GDPR | CCPA | Cookie Guard |
+|-------------|:----:|:----:|--------------|
+| **Consent Model** | ✅ Opt-in | ✅ Opt-out | Reject All button + Privacy button |
+| **Default State** | ✅ Blocked | ✅ No selling | Analytics/Marketing default to `false` |
+| **Pre-ticked Boxes** | ✅ Forbidden | ✅ N/A* | All non-essential toggles start unchecked |
+| **Essential Cookies** | ✅ No consent needed | ✅ No consent needed | Essential category locked & pre-checked |
+| **Accept All Button** | ✅ Required | ✅ Recommended | One-click accept all categories |
+| **Reject All Button** | ✅ Required | ✅ Recommended | One-click reject non-essential |
+| **Granular Controls** | ✅ Required | ✅ Recommended | Separate toggles for Analytics & Marketing |
+| **Persistent Access** | ✅ Required | ✅ Required | Floating privacy button for settings |
+| **Consent Records** | ✅ Required | ✅ Recommended | Cookie stores preferences + timestamp |
+| **Easy Withdrawal** | ✅ Required | ✅ Required | Reset method + reconfigure anytime |
+| **Cookie Information** | ✅ Required | ✅ Recommended | Built-in modal explains each category |
+
+
+### 🔒 Compliance Summary
+
+- **GDPR**: Full opt-in consent for all non-essential cookies
+- **CCPA/CPRA**: Easy opt-out mechanism + no data selling
+- **Global**: Respects user privacy across 22 languages
+- **Audit Ready**: Consent records stored with timestamps
+
+
+### 📖 Required Website Documentation
+
+For complete legal compliance, website owners must provide:
+
+1. **Privacy Policy** - How you collect, use, and protect personal data
+2. **Contact Information** - Clear way for users to exercise their rights
+
+> 📌 **Note**: Cookie Guard includes built-in Cookie Policy with category descriptions. Only a separate Privacy Policy page (with contact information) is needed for personal data handling.
+
+---
+
+### ⚠️ Important Disclaimer for Website Owners
+
+**Cookie Guard is a free, open-source tool that provides the technical framework for cookie consent management. It does NOT constitute legal advice.**
+
+As a website owner using Cookie Guard, you are responsible for:
+
+1. **Maintaining your own Privacy Policy** that accurately reflects your data handling practices
+2. **Providing a contact method** (email, contact form, or page) for users to exercise their GDPR/CCPA rights
+3. **Ensuring your legal terms** accurately describe your specific data collection and processing activities
+4. **Complying with all applicable laws** in your jurisdiction
+
+**Cookie Guard helps you implement consent management, but you must:**
+- ✅ Inform users about YOUR specific data practices
+- ✅ Provide YOUR contact information for privacy requests
+- ✅ Maintain YOUR own privacy policy and legal terms
+
+*This tool is provided "as is" without warranty of any kind. Consult a legal professional for advice on your specific compliance requirements.*
+
+---
+
+### 🚀 Ready to Use
+
+Cookie Guard gives you the technical foundation. Add your privacy policy and contact information, and you're fully compliant!
+
+
+### 🌍 Supported Languages (22)
+
+| Code | Language | Direction |
+|:----:|----------|:---------:|
+| ar | 🇸🇦 Arabic | **RTL** |
+| bn | 🇧🇩 Bengali | LTR |
+| ca | 🏴󠁥󠁳󠁣󠁴󠁿 Catalan | LTR |
+| de | 🇩🇪 German | LTR |
+| en | 🇬🇧 English | LTR |
+| es | 🇪🇸 Spanish | LTR |
+| et | 🇪🇪 Estonian | LTR |
+| eu | 🏴󠁥󠁳󠁰󠁶󠁿 Basque | LTR |
+| fr | 🇫🇷 French | LTR |
+| gl | 🏴󠁥󠁳󠁧󠁡󠁿 Galician | LTR |
+| hi | 🇮🇳 Hindi | LTR |
+| id | 🇮🇩 Indonesian | LTR |
+| it | 🇮🇹 Italian | LTR |
+| ja | 🇯🇵 Japanese | LTR |
+| ko | 🇰🇷 Korean | LTR |
+| nl | 🇳🇱 Dutch | LTR |
+| pl | 🇵🇱 Polish | LTR |
+| pt | 🇵🇹 Portuguese | LTR |
+| ru | 🇷🇺 Russian | LTR |
+| tr | 🇹🇷 Turkish | LTR |
+| vi | 🇻🇳 Vietnamese | LTR |
+| zh | 🇨🇳 Chinese | LTR |
+
+
 ## 📝 Changelog from 3.0.0
 
-### v3.2.0 - Accessibility Release
+### v3.4.0 - Performance Release
+
+- Minified size 13 kB.
+
+#### Added
+- Added wording localStorage cache (eliminates redundant network requests)
+
+#### Updated
+- Wording files optimized
+- Code weight optimization
+- Updated main buttons accessibility
+- Updated default consent to false
+- Updated main documentation
+
+
+### Previous Changes (v3.2.0)
 
 #### Added
 - Added `aria-label` to legal acceptance checkbox for better screen reader support
