@@ -13,6 +13,7 @@
 ![Version](https://img.shields.io/badge/version-3.6.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Size](https://img.shields.io/badge/size-13%20kB-lightgrey)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-View-ff2c6e)](https://www.josebamirena.com/freebies-tools-resources/cookie-guard-javascript)
 
 A GDPR/CCPA 2026 compliance, simple and customizable Cookies Management system.
 
