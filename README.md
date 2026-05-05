@@ -5,12 +5,12 @@
 
 
 * **Package:** Cookie Guard JS
-* **Version:** v3.4.0
+* **Version:** v3.6.0
 * **Copyright:** 2026 [`JosebaMirena.com`](https://www.josebamirena.com)
 * **License:** [`MIT License`](./LICENSE)
 * **Author:** Joseba Mirena ([@joseba-mirena](https://github.com/joseba-mirena))
 
-![Version](https://img.shields.io/badge/version-3.4.0-blue)
+![Version](https://img.shields.io/badge/version-3.6.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Size](https://img.shields.io/badge/size-13%20kB-lightgrey)
 
@@ -69,7 +69,7 @@ Cookie consent compliance is about **respecting user privacy** - not about compl
 
 * **Legal Compliance:** Fully GDPR/CCPA compliant workflow (2026 standards).
 * **Hybrid Modes:** Supports both full third-party consent and "no-cookies" informational mode.
-* **Smart Execution:** Auto-activates Analytics/Marketing scripts (handles `type="text/plain"`).
+* **Smart Execution:** Auto-activates Analytics/Marketing scripts with AND logic support (handles `type="text/plain"`).
 * **Zero Dependencies:** Pure Vanilla JavaScript; no jQuery or external libraries required.
 * **Privacy Focus:** Optional persistent "Privacy" floating button to re-open settings.
 * **Legal Terms:** Optional acceptance and Legal URL smart handling.
@@ -91,8 +91,8 @@ Add the minified version before the closing `</body>` tag:
 
 ```html
 <script 
-    src="https://opensource.josebamirena.com/cookie-guard/3.4.0/dist/cookie-guard.min.js" 
-    integrity="sha384-dRLgdAlVcDUp1BQffo1IH08fUouMfMdVCOZBZEEGD9uI+Nw6wWtNLLw+7p8U1bYD" 
+    src="https://opensource.josebamirena.com/cookie-guard/3.6.0/dist/cookie-guard.min.js" 
+    integrity="sha384-mr7+u4NyMYkt9msgfHVlkf0wNbBYGiLF4kpiPSQXL9DjbCSbrkIA0iOdcxm7606Z" 
     crossorigin="anonymous">
 </script>
 ```
@@ -320,6 +320,14 @@ Cookie Guard gives you the technical foundation. Add your privacy policy and con
 
 
 ## 📝 Changelog from 3.0.0
+
+### v3.6.0 - AND Release
+
+🕊️ Minified size 13 kB.
+
+#### Added
+- Added AND logic (handles multiple cookie categories)
+
 
 ### v3.4.0 - Performance Release
 

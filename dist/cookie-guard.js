@@ -2,10 +2,10 @@
  * Cookie Guard - GDPR/CCPA Compliance Consent Management System.
  *
  * @package    Cookie Guard JS
- * @version    v3.4.0
+ * @version    v3.6.0
  * @copyright  2026 JosebaMirena.com
  * @license    MIT
- *             https://www.josebamirena.com/media/assets/cookie-guard/3.4.0/LICENSE
+ *             https://www.josebamirena.com/media/assets/cookie-guard/3.6.0/LICENSE
  * @author     Joseba Mirena
  * 
  * MAIN FEATURES:
@@ -13,7 +13,7 @@
  * - Hybrid Modes: Supports both full third-party consent and "no-cookies" informational mode.
  * - Privacy Focus: Optional persistent "Privacy" floating button to re-open settings.
  * - Optional Legal Terms acceptance and Legal URL smart handling.
- * - Smart Execution: Auto-activates Analytics/Marketing scripts (handles type="text/plain").
+ * - Smart Execution: Auto-activates Analytics/Marketing scripts with AND logic support (handles type="text/plain").
  * - Zero Dependencies: Pure Vanilla JavaScript; no jQuery or external libraries required.
  * - Encapsulation: Built within an IIFE to ensure no global namespace pollution.
  * - Performance: Ultra-lightweight architecture (~13 kB minified).
@@ -25,7 +25,7 @@
  * - Developer API: Public 'toggle', 'open', and 'reset' methods for external control.
  * 
  * DOCUMENTATION:
- * https://www.josebamirena.com/media/assets/cookie-guard/3.4.0/README
+ * https://www.josebamirena.com/media/assets/cookie-guard/3.6.0/README
  */
 
 const CookieGuard = (function() {
@@ -485,8 +485,8 @@ const CookieGuard = (function() {
                 /* No consent and not on legal page: open automatically after delay */
                 setTimeout(() => this.open(), CONF.delay);
             } else if (consent) {
-                /* Consent already exists: just apply the script categories */
-                this.apply(consent);
+                /* Consent already exists: just exec the script categories */
+                this.exec(consent);
             }
             
             /* If we are on legal page and no consent exists, the modal stays closed. */
@@ -571,56 +571,43 @@ const CookieGuard = (function() {
             setTimeout(() => location.reload(), 600);
         },
         /**
-         * Triggers events and script activation based on user consent.
-         */
-        apply: function(data) {
-            if (data.analytics) this.exec('analytics');
-            if (data.marketing) this.exec('marketing');
-        },
-        /**
          * Replaces type="text/plain" scripts with type="text/javascript" to enable them.
          */
-        exec: function(cat) {
-            // 1. Internal function to process scripts
+        exec: function(consent) {
             const p = (n) => {
-                if (n.tagName === 'SCRIPT' && 
-                    n.type === 'text/plain' && 
-                    n.getAttribute('data-cg-category') === cat) {
+                if (n.tagName === 'SCRIPT' && n.type === 'text/plain') {
+                    const required = n.getAttribute('data-cg-category');
+                    if (!required) return;
+                    
+                    const cats = required.split(' ');
+                    if (!cats.every(c => consent[c])) return;
                     
                     const newScript = $.createElement('script');
-                    newScript.async = false; // sequential execution
-                    // Mirror attributes
+                    newScript.async = false;
                     Array.from(n.attributes).forEach(attr => {
                         if (attr.name !== 'type' && attr.name !== 'data-cg-category') {
                             newScript.setAttribute(attr.name, attr.value);
                         }
                     });
-
                     newScript.type = 'text/javascript';
                     newScript.textContent = n.innerHTML;
-
-                    if (n.parentNode) {
-                        n.parentNode.replaceChild(newScript, n);
-                    }
+                    n.parentNode?.replaceChild(newScript, n);
                 }
             };
-
-            // 2. Run immediately for scripts already present
+            
             $.querySelectorAll('script[type="text/plain"]').forEach(p);
-
-            // 3. Observe the DOM for scripts added later
+            
             const observer = new MutationObserver((mutations) => {
                 mutations.forEach(mutation => {
                     mutation.addedNodes.forEach(n => {
-                        if (n.nodeType === 1) { // If it's an element
+                        if (n.nodeType === 1) {
                             if (n.tagName === 'SCRIPT') p(n);
-                            // Check children in case a block of HTML was inserted
                             n.querySelectorAll?.('script').forEach(p);
                         }
                     });
                 });
             });
-
+            
             observer.observe($.documentElement, {
                 childList: true,
                 subtree: true
