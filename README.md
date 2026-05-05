@@ -12,7 +12,7 @@
 
 ![Version](https://img.shields.io/badge/version-3.6.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Size](https://img.shields.io/badge/size-13%20kB-lightgrey)
+![Size](https://img.shields.io/badge/size-12%90kB-lightgrey)
 [![Live Demo](https://img.shields.io/badge/Live_Demo-View-ff2c6e)](https://www.josebamirena.com/freebies-tools-resources/cookie-guard-javascript)
 
 A GDPR/CCPA 2026 compliance, simple and customizable Cookies Management system.
@@ -324,7 +324,7 @@ Cookie Guard gives you the technical foundation. Add your privacy policy and con
 
 ### v3.6.0 - AND Release
 
-🕊️ Minified size 13 kB.
+🕊️ Minified size 12.9 kB.
 
 #### Added
 - Added AND logic (handles multiple cookie categories)
